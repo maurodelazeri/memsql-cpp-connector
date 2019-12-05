@@ -1,5 +1,5 @@
 # memsql-cpp-connector
-MemSQL connector wrapping mariadb for C++ 
+MemSQL connector with pool if connections for c++
 
 ### Dependencies
 

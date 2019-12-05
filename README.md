@@ -1,5 +1,5 @@
 # memsql-cpp-connector
-MemSQL connector with pool if connections for c++
+MemSQL connector with pool of connections for c++
 
 ### Dependencies
 

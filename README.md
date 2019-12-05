@@ -67,20 +67,26 @@ int main(int argc, char **argv) {
             "select * venue from products where product_id=%1%")
                 % product_id;
 
-    auto data = con->open(sqlQuery.str());
-    if (!data->is_valid()) {
-        return false;
-    }
+    shared_ptr<MysqlConnection> con = m_pool->get_connection();
+    if (con) {
+        auto data = con->open(sqlQuery.str());
+        if (!data->is_valid()) {
+            return false;
+        }
 
-    auto row = data->next();
-    unsigned int row_idx = 0;
-    while (row) {
-        row_idx++;
+        auto row = data->next();
+        unsigned int row_idx = 0;
+        while (row) {
+            row_idx++;
+
+            cout << row->get_value(0) << endl;
+
+            row = data->next();
+        }
         
-        cout << row->get_value(0) << endl;
-        
-        row = data->next();
+        m_pool->release_connection(*con);
     }
+    
     return 0;
 }    
 ```

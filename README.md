@@ -45,7 +45,15 @@ if (*affectRowsPtr == 0) {
 
 or you can simple select data:
 
-```
+```c++
+#include <iostream>
+#include <sstream>
+#include "connection_pool.h"
+
+using namespace std;
+
+int main(int argc, char **argv) {
+
     std::ostringstream sqlQuery;
     auto product_id = 2;
     sqlQuery << boost::format(
@@ -66,4 +74,6 @@ or you can simple select data:
         
         row = data->next();
     }
+    return 0;
+}    
 ```

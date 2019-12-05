@@ -1,6 +1,13 @@
 # memsql-cpp-connector
 MemSQL connector wrapping mariadb for C++ 
 
+### Dependencies
+
+http://download.memsql.com/clients/mariadb-connector-c-3.0.9-linux-x86_64.tar.gz
+
+I'm using boost, but you can easily removed if wanted
+
+
 ```c++
 #include <iostream>
 #include <sstream>

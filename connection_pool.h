@@ -2,7 +2,6 @@
 
 #include "mysqlconn.h"
 #include <memory>
-#include <boost/format.hpp>
 
 class connection_pool {
 public:

@@ -30,3 +30,40 @@ int main(int argc, char **argv) {
     return 0;
 }
 ```
+
+It's simple, ready to go...
+
+You can for example check the affected rows using 
+
+```c++
+std::shared_ptr<my_ulonglong> affectRowsPtr = std::make_shared<my_ulonglong>();
+con->execute(sqlQuery.str(), false, true, affectRowsPtr.get());
+if (*affectRowsPtr == 0) {
+  cout << "No changes" << endl;
+}
+```
+
+or you can simple select data:
+
+```
+    std::ostringstream sqlQuery;
+    auto product_id = 2;
+    sqlQuery << boost::format(
+            "select * venue from products where product_id=%1%")
+                % product_id;
+
+    auto data = con->open(sqlQuery.str());
+    if (!data->is_valid()) {
+        return false;
+    }
+
+    auto row = data->next();
+    unsigned int row_idx = 0;
+    while (row) {
+        row_idx++;
+        
+        cout << row->get_value(0) << endl;
+        
+        row = data->next();
+    }
+```
